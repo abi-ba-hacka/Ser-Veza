@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
-import api.views
+from api import views
 from rest_framework import viewsets
 from rest_framework.response import Response
 admin.site.site_header = 'Growler Fans Admin'
@@ -37,7 +37,9 @@ router.register(r'settings', SettingsViewSet, base_name='settings')
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
-
     url(r'^api/v1/', include(router.urls)),
+
+    url(r'^refill/$', views.index, name='refill_index'),
+    url(r'^refill/(?P<refill_id>[0-9a-zA-Z_-]+)/show/$', views.show, name='refill_show'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
