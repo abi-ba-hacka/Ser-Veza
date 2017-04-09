@@ -70,7 +70,7 @@ class Refill(models.Model):
     PRIZE_BEER = 1
     PRIZE_WARES = 2
     PRIZE_CHOICES = (
-        (PRIZE_NONE, 'No'),
+        (PRIZE_NONE, 'Sin Premio'),
         (PRIZE_BEER, 'Cerveza Gratis'),
         (PRIZE_WARES, 'Merchandise'),
     )
