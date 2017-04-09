@@ -3,9 +3,9 @@
 {% block content %}
 
 <div style="display: block;max-width: 20%;margin-left: auto;margin-right: auto;">
-<h3>Nueva Recarga </h3>
+<h3 style="color:white;margin-bottom:10%;">Nueva Recarga </h3>
 
-{% if err %}<p style="color:red"><strong>{{ err }}</strong></p>{% endif %}
+{% if err %}<p style="color:#dd0000"><strong>{{ err }}</strong></p>{% endif %}
 
 <div>
 <form action="{% url 'refill_index' %}" method="post">
@@ -13,12 +13,12 @@
 
 <table>
 <tr><td>
-<label for="shelter">ID</label></td><td>
+<label style="color:white" for="shelter">ID</label></td><td>
 <input type="text" name="code" id="code" value=""/>
 </td></tr>
 
 <tr><td>
-<label for="shelter">Refugio</label></td><td>
+<label for="shelter" style="color:white">Refugio</label></td><td>
 	<select name="shelter">
 {% for s in shelters %}
 		<option value="{{ s.id }}">{{ s.name }}</option>
@@ -27,7 +27,7 @@
 </td></tr>
 
 <tr><td>
-<label for="beer">Cerveza</label></td><td>
+<label for="beer" style="color:white">Cerveza</label></td><td>
 	<select name="beer">
 {% for b in beers %}
 		<option value="{{ b.id }}">{{ b.name }}</option>
@@ -41,11 +41,11 @@
 </div>
 
 
-<div style="margin-top: 4%">
-<a href="/admin">Administración de Clientes</a>
+<div style="margin-top: 10%">
+<a href="/admin"><span style="font-weight:bold">Administración de Datos</span></a>
 </div>
 <div style="margin-top: 2%">
-<a href="/refill/">Nueva Recarga</a>
+<a href="/refill/"><span style="font-weight:bold">Nueva Recarga</span></a>
 </div>
 
 

@@ -24,8 +24,8 @@ class Shelter(models.Model):
     country = models.CharField(max_length=64, blank=True)
 
     class Meta:
-        verbose_name = 'Shelter'
-        verbose_name_plural = 'Shelters'
+        verbose_name = 'Refugio'
+        verbose_name_plural = 'Refugios'
         ordering = ('created',)
 
     def __unicode__(self):
@@ -66,8 +66,8 @@ class Prize(models.Model):
     name = models.CharField(max_length=64)
 
     class Meta:
-        verbose_name = 'Prize'
-        verbose_name_plural = 'Prizes'
+        verbose_name = 'Premio'
+        verbose_name_plural = 'Premios'
         ordering = ('created',)
 
     def __unicode__(self):
@@ -82,8 +82,8 @@ class Beer(models.Model):
     name = models.CharField(max_length=64)
 
     class Meta:
-        verbose_name = 'Beer'
-        verbose_name_plural = 'Beers'
+        verbose_name = 'Cerveza'
+        verbose_name_plural = 'Cervezas'
         ordering = ('created',)
 
     def __unicode__(self):
@@ -101,8 +101,8 @@ class Refill(models.Model):
     growler = models.ForeignKey(Growler, related_name='refills')
 
     class Meta:
-        verbose_name = 'Refill'
-        verbose_name_plural = 'Refills'
+        verbose_name = 'Recarga'
+        verbose_name_plural = 'Recargas'
         ordering = ('created',)
 
     def __unicode__(self):

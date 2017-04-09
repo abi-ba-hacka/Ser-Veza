@@ -5,20 +5,22 @@
 {% block content %}
 
 <div style="display: block;max-width: 20%;margin-left: auto;margin-right: auto;">
-<h2>Recarga Aceptada</h2>
+<h2 style="color:white;margin-bottom:10%;">Recarga Aceptada</h2>
 
 <div>
 <table>
-<tr><td>ID</td><td> <span style="color:blue">{{ refill.growler.code }}</span></td></tr>
-<tr><td>Premio</td><td><span style="color:blue">{{ prize }}</span></td></tr>
+<tr><td style="color:white">ID</td><td> <span style="margin-left:20%;color:white;font-weight:bold">{{ refill.growler.code }}</span></td></tr>
+<tr><td style="color:white">Premio</td><td><span style="margin-left:20%;color:#00cc99;font-weight:bold">{{ prize }}</span></td></tr>
 </table>
 </div>
 
-<div style="margin-top: 4%">
-<a href="/admin">Administración de Clientes</a>
+
+<div style="margin-top: 10%">
+<a href="/admin"><span style="font-weight:bold">Administración de Datos</span></a>
 </div>
 <div style="margin-top: 2%">
-<a href="/refill/">Nueva Recarga</a>
+<a href="/refill/"><span style="font-weight:bold">Nueva Recarga</span></a>
 </div>
+
 
 {% endblock %}
