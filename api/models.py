@@ -26,12 +26,12 @@ class Growler(models.Model):
         verbose_name_plural = 'Growlers'
         ordering = ('created',)
 
-    def __init__(self):
-        super(Growler, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(Growler, self).__init__(*args, **kwargs)
         self.code = str(uuid.uuid4()).replace('-', '')[:8]
 
     def __unicode__(self):
-        return 'Growler for %s' % (self.owner.email)
+        return '%s from %s' % (self.code, self.owner.email)
 
 
 class Refill(models.Model):
