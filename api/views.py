@@ -7,7 +7,8 @@ from django.urls import reverse
 
 def show(request, refill_id):
     refill = get_object_or_404(models.Refill, pk=refill_id)
-    return render(request, 'refill.html', {'refill': refill, 'prize': refill.prize.name})
+    total = models.Refill.objects.filter(growler=refill.growler).count()
+    return render(request, 'refill.html', {'refill': refill, 'total': total, 'prize': refill.prize.name})
 
 
 def index(request):
