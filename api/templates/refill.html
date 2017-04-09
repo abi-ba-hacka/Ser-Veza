@@ -1,6 +1,16 @@
-<h1>Refill</h1>
+<div>
+<a href="/admin">Admin</a>
+</div>
+<div>
+<a href="/refill/">Nueva Recarga</a>
+</div>
+
+<h1>Recarga Aceptada !</h1>
 
 <div>
-	Refill code: {{ refill.growler.code }}
+<table>
+<tr><td>ID del Growler: {{ refill.growler.code }}</td></tr>
+<tr><td><p style="color:blue">Premio: {{ prize }}</p></td></tr>
+</table>
 </div>
 

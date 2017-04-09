@@ -29,7 +29,7 @@ class Shelter(models.Model):
         ordering = ('created',)
 
     def __unicode__(self):
-        return self.name
+        return ', '.join([self.name, self.city])
 
 
 class Growler(models.Model):
@@ -49,7 +49,10 @@ class Growler(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(Growler, self).__init__(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
         self.code = self.code or str(uuid.uuid4()).replace('-', '')[:8]
+        super(Growler, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return '%s from %s' % (self.code, self.owner.email)
@@ -63,12 +66,22 @@ class Refill(models.Model):
         (BEER_PORTER, 'Porter'),
     )
 
+    PRIZE_NONE = 0
+    PRIZE_BEER = 1
+    PRIZE_WARES = 2
+    PRIZE_CHOICES = (
+        (PRIZE_NONE, 'No'),
+        (PRIZE_BEER, 'Cerveza Gratis'),
+        (PRIZE_WARES, 'Merchandise'),
+    )
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     location = models.ForeignKey(Shelter)
     beer = models.IntegerField(choices=BEER_CHOICES, default=BEER_BLONDE)
+    prize = models.IntegerField(choices=PRIZE_CHOICES, default=PRIZE_NONE)
     growler = models.ForeignKey(Growler, related_name='refills')
 
     class Meta:

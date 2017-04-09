@@ -39,7 +39,8 @@ urlpatterns = [
     url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include(router.urls)),
 
+    url(r'^$', views.index, name='refill_index'),
     url(r'^refill/$', views.index, name='refill_index'),
-    url(r'^refill/(?P<refill_id>[0-9a-zA-Z_-]+)/show/$', views.show, name='refill_show'),
+    url(r'^refill/(?P<refill_id>[0-9a-zA-Z_-]+)/$', views.show, name='refill_show'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
