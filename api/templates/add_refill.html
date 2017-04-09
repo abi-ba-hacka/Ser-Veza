@@ -1,8 +1,9 @@
-<div>
-<a href="/admin">Admin</a>
-</div>
+{% extends "base.html" %}
 
-<h1>Nueva Recarga</h1>
+{% block content %}
+
+<div style="display: block;max-width: 20%;margin-left: auto;margin-right: auto;">
+<h3>Nueva Recarga </h3>
 
 {% if err %}<p style="color:red"><strong>{{ err }}</strong></p>{% endif %}
 
@@ -11,11 +12,13 @@
 {% csrf_token %}
 
 <table>
-<tr><td>ID del Growler</td></tr>
-<tr><td><input type="text" name="code" id="code" value="" size="10" /></td></tr>
-
-<tr><td>Refugio</td></tr>
 <tr><td>
+<label for="shelter">ID</label></td><td>
+<input type="text" name="code" id="code" value=""/>
+</td></tr>
+
+<tr><td>
+<label for="shelter">Refugio</label></td><td>
 	<select name="shelter">
 {% for s in shelters %}
 		<option value="{{ s.id }}">{{ s.name }}</option>
@@ -23,8 +26,8 @@
 	</select>
 </td></tr>
 
-<tr><td>Cerveza</td></tr>
 <tr><td>
+<label for="beer">Cerveza</label></td><td>
 	<select name="beer">
 {% for b in beers %}
 		<option value="{{ b.id }}">{{ b.name }}</option>
@@ -33,10 +36,19 @@
 </td></tr>
 </table>
 
-<input type="submit" value="Recargar" />
+<input style="margin-top: 5%" type="submit" value="Recargar" />
 </form>
 </div>
 
 
+<div style="margin-top: 4%">
+<a href="/admin">Administración de Clientes</a>
+</div>
+<div style="margin-top: 2%">
+<a href="/refill/">Nueva Recarga</a>
+</div>
 
 
+</div>
+
+{% endblock %}

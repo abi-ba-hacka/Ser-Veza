@@ -7,12 +7,12 @@ from django.urls import reverse
 
 def show(request, refill_id):
     refill = get_object_or_404(models.Refill, pk=refill_id)
-    return render(request, 'refill.html', {'refill': refill, 'prize': refill.get_prize_display()})
+    return render(request, 'refill.html', {'refill': refill, 'prize': refill.prize.name})
 
 
 def index(request):
     shelters = [{'id': s.id, 'name': s.name} for s in models.Shelter.objects.all()]
-    beers = [{'id': b[0], 'name': b[1]} for b in models.Refill.BEER_CHOICES]
+    beers = [{'id': b.id, 'name': b.name} for b in models.Beer.objects.all()]
     if request.method == 'GET':
         return render(request, 'add_refill.html', {'beers': beers, 'shelters': shelters})
     try:
@@ -27,8 +27,8 @@ def index(request):
     else:
         refill = models.Refill()
         refill.growler = growler
-        refill.prize = random.choice(models.Refill.PRIZE_CHOICES)[0]
+        refill.prize = random.choice(models.Prize.objects.all())
         refill.location = models.Shelter.objects.get(pk=request.POST['shelter'])
-        refill.beer = int(request.POST['beer'])
+        refill.beer = models.Beer.objects.get(pk=request.POST['beer'])
         refill.save()
         return HttpResponseRedirect(reverse('refill_show', args=(refill.id,)))

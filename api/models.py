@@ -58,30 +58,46 @@ class Growler(models.Model):
         return '%s from %s' % (self.code, self.owner.email)
 
 
+class Prize(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = 'Prize'
+        verbose_name_plural = 'Prizes'
+        ordering = ('created',)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Beer(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = 'Beer'
+        verbose_name_plural = 'Beers'
+        ordering = ('created',)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Refill(models.Model):
-    BEER_BLONDE = 0
-    BEER_PORTER = 1
-    BEER_CHOICES = (
-        (BEER_BLONDE, 'Blonde'),
-        (BEER_PORTER, 'Porter'),
-    )
-
-    PRIZE_NONE = 0
-    PRIZE_BEER = 1
-    PRIZE_WARES = 2
-    PRIZE_CHOICES = (
-        (PRIZE_NONE, 'Sin Premio'),
-        (PRIZE_BEER, 'Cerveza Gratis'),
-        (PRIZE_WARES, 'Merchandise'),
-    )
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     location = models.ForeignKey(Shelter)
-    beer = models.IntegerField(choices=BEER_CHOICES, default=BEER_BLONDE)
-    prize = models.IntegerField(choices=PRIZE_CHOICES, default=PRIZE_NONE)
+    beer = models.ForeignKey(Beer)
+    prize = models.ForeignKey(Prize)
     growler = models.ForeignKey(Growler, related_name='refills')
 
     class Meta:
@@ -90,4 +106,4 @@ class Refill(models.Model):
         ordering = ('created',)
 
     def __unicode__(self):
-        return self.get_beer_display()
+        return self.beer.name

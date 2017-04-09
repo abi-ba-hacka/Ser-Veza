@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from api import views
 from rest_framework import viewsets
 from rest_framework.response import Response
-admin.site.site_header = 'Growler Fans Admin'
+admin.site.site_header = 'Growler Mania Admin'
 
 
 class SettingsViewSet(viewsets.GenericViewSet):

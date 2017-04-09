@@ -1,16 +1,24 @@
-<div>
-<a href="/admin">Admin</a>
-</div>
-<div>
-<a href="/refill/">Nueva Recarga</a>
-</div>
+{% extends "base.html" %}
 
-<h1>Recarga Aceptada !</h1>
+
+
+{% block content %}
+
+<div style="display: block;max-width: 20%;margin-left: auto;margin-right: auto;">
+<h2>Recarga Aceptada</h2>
 
 <div>
 <table>
-<tr><td>ID del Growler: {{ refill.growler.code }}</td></tr>
-<tr><td>Premio: <span style="color:blue">{{ prize }}</span></td></tr>
+<tr><td>ID</td><td> <span style="color:blue">{{ refill.growler.code }}</span></td></tr>
+<tr><td>Premio</td><td><span style="color:blue">{{ prize }}</span></td></tr>
 </table>
 </div>
 
+<div style="margin-top: 4%">
+<a href="/admin">Administración de Clientes</a>
+</div>
+<div style="margin-top: 2%">
+<a href="/refill/">Nueva Recarga</a>
+</div>
+
+{% endblock %}

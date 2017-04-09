@@ -9,6 +9,18 @@ class ShelterAdmin(admin.ModelAdmin):
     search_fields = ['name', 'city', 'state']
 
 
+@admin.register(Beer)
+class BeerAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+
+
+@admin.register(Prize)
+class PrizeAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+
+
 @admin.register(Growler)
 class GrowlerAdmin(admin.ModelAdmin):
     list_display = ['owner', 'created', 'code']
